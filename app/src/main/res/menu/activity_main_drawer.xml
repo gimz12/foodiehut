@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="@string/menu_home"
+            tools:layout="@layout/fragment_home"/>
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/baseline_manage_accounts_24"
+            android:title="@string/menu_profile"
+            tools:layout="@layout/fragment_profile"/>
+        <item
+            android:id="@+id/nav_menu"
+            android:icon="@drawable/baseline_restaurant_menu_24"
+            android:title="@string/menu_foodMenu"
+            tools:layout="@layout/fragment_menu"/>
+        <item
+            android:id="@+id/nav_orderHistory"
+            android:icon="@drawable/baseline_history_24"
+            android:title="@string/menu_orderHistory"
+            tools:layout="@layout/fragment_order_history"/>
+        <item
+            android:id="@+id/nav_trackOrder"
+            android:icon="@drawable/baseline_delivery_dining_24"
+            android:title="@string/menu_trackOrder"
+            tools:layout="@layout/fragment_track_order"/>
+        <item
+            android:id="@+id/nav_promo"
+            android:icon="@drawable/baseline_local_offer_24"
+            android:title="@string/menu_promo"
+            tools:layout="@layout/fragment_promotion"/>
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/baseline_shopping_cart_24"
+            android:title="@string/menu_cart"
+            tools:layout="@layout/fragment_my_cart"/>
+    </group>
+</menu>

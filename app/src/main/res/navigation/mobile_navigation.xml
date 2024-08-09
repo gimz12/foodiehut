@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.foodiehut.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.foodiehut.ui.Profile.ProfileFragment"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_promo"
+        android:name="com.example.foodiehut.PromotionFragment"
+        android:label="@string/menu_promo"
+        tools:layout="@layout/fragment_promotion" />
+    <fragment
+        android:id="@+id/nav_menu"
+        android:name="com.example.foodiehut.MenuFragment"
+        android:label="@string/menu_foodMenu"
+        tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/nav_orderHistory"
+        android:name="com.example.foodiehut.OrderHistoryFragment"
+        android:label="@string/menu_orderHistory"
+        tools:layout="@layout/fragment_order_history" />
+    <fragment
+        android:id="@+id/nav_trackOrder"
+        android:name="com.example.foodiehut.TrackOrderFragment"
+        android:label="@string/menu_trackOrder"
+        tools:layout="@layout/fragment_track_order" />
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.example.foodiehut.MyCartFragment"
+        android:label="@string/menu_cart"
+        tools:layout="@layout/fragment_my_cart" />
+</navigation>
