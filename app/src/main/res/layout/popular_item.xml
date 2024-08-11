@@ -1,68 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="5dp">
 
         <ImageView
             android:id="@+id/pop_img"
-            android:layout_width="280dp"
-            android:layout_height="190dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pop"/>
-        <TextView
             android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pop"/> <!-- Replace with your default image -->
+
+        <TextView
+            android:id="@+id/pop_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Popular Products"
+            android:text="Item Name"
             android:textSize="19sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:paddingTop="8dp"/>
 
         <TextView
             android:id="@+id/pop_des"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description"
             android:ellipsize="end"
             android:maxLines="1"
-            android:singleLine="true" />
+            android:paddingTop="4dp"/>
+
+        <TextView
+            android:id="@+id/pop_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price"
+            android:textColor="#050C9C"
+            android:textStyle="bold"
+            android:paddingTop="4dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:src="@drawable/rating"
-                android:layout_marginLeft="-5dp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="5.0"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
                 android:text="20% Discount"
                 android:textColor="#050C9C"
                 android:textStyle="bold"
                 android:gravity="end"/>
-
-
-
         </LinearLayout>
 
     </LinearLayout>
