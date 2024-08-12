@@ -1,6 +1,7 @@
 package com.example.foodiehut.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
         return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.home_cat_cards,parent,false));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull HomeCategoryAdapter.ViewHolder holder, int position) {
 
@@ -44,7 +46,18 @@ public class HomeCategoryAdapter extends RecyclerView.Adapter<HomeCategoryAdapte
                 .placeholder(R.drawable.ic_launcher_background) // Optional placeholder while loading
                 .error(R.drawable.ic_launcher_background) // Optional error placeholder
                 .into(holder.catimg);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, ViewAllActivity.class);
+                intent.putExtra("category",categoryList.get(holder.getAdapterPosition()).getName());
+                context.startActivity(intent);
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {

@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "phone_number TEXT, " +
                 "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
-        db.execSQL("CREATE TABLE MenuItems (\n" +
+        db.execSQL("CREATE TABLE MenuItems (" +
                 "    item_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "    name TEXT NOT NULL," +
                 "    description TEXT," +

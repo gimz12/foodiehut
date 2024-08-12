@@ -126,7 +126,7 @@ public class HomeFragment extends Fragment {
         categoryList = new ArrayList<>();
         // Example static data, replace with database query if needed
         categoryList.add(new HomeCategory("Pizza", "https://iili.io/dleeOPe.md.jpg", "type1"));
-        categoryList.add(new HomeCategory("Burgers", "https://iili.io/dleeNV9.md.jpg", "type2"));
+        categoryList.add(new HomeCategory("Burger", "https://iili.io/dleeNV9.md.jpg", "type2"));
         // Add more categories as needed
 
         categoryAdapter = new HomeCategoryAdapter(getContext(), categoryList);
