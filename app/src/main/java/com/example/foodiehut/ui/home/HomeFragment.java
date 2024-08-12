@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,8 +26,12 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    ScrollView scrollView;
+    ProgressBar progressBar;
+
     private RecyclerView recyclerView;
     private RecyclerView categoriesRecyclerView,RecommendedRecyclerView;
+
     private HomeCategoryAdapter categoryAdapter;
     private MenuItemAdapter adapter;
 
@@ -42,6 +48,11 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.pop_rec);
         categoriesRecyclerView = view.findViewById(R.id.categories_rec);
         RecommendedRecyclerView = view.findViewById(R.id.recommended_rec);
+        scrollView = view.findViewById(R.id.scroll_view);
+        progressBar = view.findViewById(R.id.progressbar);
+
+        progressBar.setVisibility(View.VISIBLE);
+        scrollView.setVisibility(View.GONE);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         categoriesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
@@ -59,6 +70,9 @@ public class HomeFragment extends Fragment {
         recommendedItemList.add(new RecommendedItem("Pasta", "Italian Pasta","https://iili.io/dlkWDxe.md.jpg"));
         recommendedItemList.add(new RecommendedItem("Burgers", "American Burgers", "https://iili.io/dlkWZb9.md.jpg"));
         // Add more categories as needed
+
+        progressBar.setVisibility(View.GONE);
+        scrollView.setVisibility(View.VISIBLE);
 
         recommenededItemAdapter = new RecommenededItemAdapter(getContext(), recommendedItemList);
         RecommendedRecyclerView.setAdapter(recommenededItemAdapter);

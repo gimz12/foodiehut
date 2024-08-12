@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         emailEditText = findViewById(R.id.email);
-        signup = findViewById(R.id.signup_button);
         loginLink = findViewById(R.id.login_link);
+        signup = findViewById(R.id.signup_button);
 
         DBHelper = new DBHelper(this);
 
@@ -67,9 +67,11 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = DBHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("username", username);
-        values.put("password", password);  // Store plain text password
+        values.put("password", password);  // Store plain text password (consider hashing for security)
         values.put("email", email);
         values.put("profile_image", (byte[]) null); // Assuming no profile image is uploaded at signup
+        values.put("address", (String) null);  // Setting address to null
+        values.put("phone_number", (String) null);  // Setting phone number to null
         values.put("created_at", System.currentTimeMillis());
 
         long result = db.insert("Users", null, values);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 
 
 }

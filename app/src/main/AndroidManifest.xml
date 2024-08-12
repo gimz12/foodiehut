@@ -20,10 +20,8 @@
         <activity
             android:name=".Admin.AddMenuItemAdmin"
             android:exported="false">
-
-
-
         </activity>
+
         <activity
             android:name=".nav"
             android:exported="true"
@@ -48,7 +46,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="false">
-
 
 
         </activity>

@@ -9,9 +9,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class AddMenuItemAdmin extends AppCompatActivity {
     private Button chooseImageButton;
     private Button addItemButton;
     private TextView statusMessageTextView;
+    private Spinner categorySpinner;
 
     private DBHelper dbHelper;
     private Bitmap selectedImageBitmap;
@@ -54,8 +57,16 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         chooseImageButton = findViewById(R.id.choose_image_button);
         addItemButton = findViewById(R.id.add_item_button);
         statusMessageTextView = findViewById(R.id.status_message);
+        categorySpinner = findViewById(R.id.category_spinner);
+
 
         dbHelper = new DBHelper(this);
+
+        // Populate the spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categories_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(adapter);
 
         chooseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +107,8 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         String name = itemNameEditText.getText().toString().trim();
         String description = itemDescriptionEditText.getText().toString().trim();
         String priceStr = itemPriceEditText.getText().toString().trim();
+        String category = categorySpinner.getSelectedItem().toString();
+
 
         if (name.isEmpty() || priceStr.isEmpty()) {
             statusMessageTextView.setText("Name and Price are required.");
@@ -115,8 +128,9 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         values.put("name", name);
         values.put("description", description);
         values.put("price", price);
-        values.put("availability", true);  // Default availability to true
-        values.put("image", getImageAsByteArray(selectedImageBitmap)); // Convert bitmap to byte array
+        values.put("availability", true);
+        values.put("image", getImageAsByteArray(selectedImageBitmap));
+        values.put("category", category);
         values.put("created_at", System.currentTimeMillis());
 
         long result = db.insert("MenuItems", null, values);

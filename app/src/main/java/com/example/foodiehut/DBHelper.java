@@ -33,16 +33,19 @@ public class DBHelper extends SQLiteOpenHelper {
                 "password TEXT NOT NULL, " +
                 "email TEXT UNIQUE NOT NULL, " +
                 "profile_image BLOB, " +
+                "address TEXT, " +
+                "phone_number TEXT, " +
                 "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
-        db.execSQL("CREATE TABLE MenuItems (" +
-                "item_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name TEXT NOT NULL, " +
-                "description TEXT, " +
-                "price REAL NOT NULL, " +
-                "availability BOOLEAN NOT NULL DEFAULT 1, " +
-                "image BLOB, " +
-                "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)");
+        db.execSQL("CREATE TABLE MenuItems (\n" +
+                "    item_id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "    name TEXT NOT NULL," +
+                "    description TEXT," +
+                "    price REAL NOT NULL," +
+                "    availability BOOLEAN NOT NULL DEFAULT 1," +
+                "    image BLOB," +
+                "    category TEXT NOT NULL CHECK(category IN ('Pasta', 'Pizza', 'Salad', 'Soup', 'Burger', 'Submarine', 'Rice'))," +
+                "    created_at DATETIME DEFAULT CURRENT_TIMESTAMP)");
 
         db.execSQL("CREATE TABLE Orders (" +
                 "order_id INTEGER PRIMARY KEY AUTOINCREMENT, " +

@@ -15,6 +15,15 @@
     <string name="menu_trackOrder">Track Order</string>
     <string name="menu_cart">My Cart</string>
     <string name="menu_promo">Promotions</string>
+    <string-array name="categories_array">
+        <item>Pasta</item>
+        <item>Pizza</item>
+        <item>Salad</item>
+        <item>Soup</item>
+        <item>Burger</item>
+        <item>Submarine</item>
+        <item>Rice</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
