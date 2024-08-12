@@ -27,4 +27,5 @@
 <string name="description">The Chess Pizza is typically topped with a rich tomato sauce, a blend of cheeses, and a variety of flavorful toppings that symbolize different chess pieces, such as mushrooms for pawns, bell peppers for knights, and sausage slices for rooks.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_description" />
 </resources>
