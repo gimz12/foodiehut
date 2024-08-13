@@ -1,10 +1,14 @@
 package com.example.foodiehut;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -101,15 +105,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(highest_rating_item_id) REFERENCES MenuItems(item_id))");
 
         //Cart Table
-        db.execSQL("CREATE TABLE Analytics (" +
-                "analytics_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "month TEXT NOT NULL, " +
-                "highest_demand_item_id INTEGER NOT NULL, " +
-                "highest_rating_item_id INTEGER NOT NULL, " +
-                "total_orders INTEGER NOT NULL, " +
-                "total_revenue REAL NOT NULL, " +
-                "FOREIGN KEY(highest_demand_item_id) REFERENCES MenuItems(item_id), " +
-                "FOREIGN KEY(highest_rating_item_id) REFERENCES MenuItems(item_id))");
+        db.execSQL("CREATE TABLE Cart (" +
+                "cart_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "user_id INTEGER NOT NULL, " +
+                "productName TEXT NOT NULL, " +
+                "productPrice REAL NOT NULL, " +
+                "productDate TEXT NOT NULL, " +
+                "productTime TEXT NOT NULL, " +
+                "totalQuantity INTEGER NOT NULL, " +
+                "totalPrice REAL NOT NULL, " +
+                "FOREIGN KEY(user_id) REFERENCES Users(user_id))");
 
 
     }
@@ -130,5 +135,40 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Create new tables
         onCreate(db);
+    }
+
+    public List<MyCart> getCartItemsByUserId(int userId) {
+        List<MyCart> cartItems = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Cart WHERE user_id = ?", new String[]{String.valueOf(userId)});
+
+        if (cursor.moveToFirst()) {
+            // Check the indices of each column
+            int productNameIndex = cursor.getColumnIndex("productName");
+            int productPriceIndex = cursor.getColumnIndex("productPrice");
+            int productDateIndex = cursor.getColumnIndex("productDate");
+            int productTimeIndex = cursor.getColumnIndex("productTime");
+            int totalQuantityIndex = cursor.getColumnIndex("totalQuantity");
+            int totalPriceIndex = cursor.getColumnIndex("totalPrice");
+
+            do {
+                // Ensure column indices are valid before accessing them
+                if (productNameIndex != -1 && productPriceIndex != -1 && productDateIndex != -1 &&
+                        productTimeIndex != -1 && totalQuantityIndex != -1 && totalPriceIndex != -1) {
+
+                    String productName = cursor.getString(productNameIndex);
+                    double productPrice = cursor.getDouble(productPriceIndex);
+                    String productDate = cursor.getString(productDateIndex);
+                    String productTime = cursor.getString(productTimeIndex);
+                    int totalQuantity = cursor.getInt(totalQuantityIndex);
+                    double totalPrice = cursor.getDouble(totalPriceIndex);
+
+                    MyCart item = new MyCart(productName, productPrice, productDate, productTime, totalQuantity, totalPrice);
+                    cartItems.add(item);
+                }
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return cartItems;
     }
 }

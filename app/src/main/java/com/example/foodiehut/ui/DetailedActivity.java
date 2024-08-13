@@ -1,5 +1,8 @@
 package com.example.foodiehut.ui;
 
+import android.content.ContentValues;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 
@@ -17,6 +22,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.foodiehut.DBHelper;
 import com.example.foodiehut.R;
 import com.example.foodiehut.ui.home.ViewAllModel;
 
@@ -25,19 +31,20 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class DetailedActivity extends AppCompatActivity {
-
     TextView quantity;
     int totalQuantity = 1;
     double totalPrice = 0 ;
 
     ImageView imageView;
-    TextView price,des,Name;
+    TextView price, des, Name;
     Button addToCart_btn;
-    ImageView addItem,removeItem;
+    ImageView addItem, removeItem;
     Toolbar toolbar;
+    int userId;
 
     ViewAllModel viewAllModel = null;
-
+    SQLiteDatabase db;
+    private DBHelper dbHelper;
 
 
     @Override
@@ -54,18 +61,27 @@ public class DetailedActivity extends AppCompatActivity {
             viewAllModel = (ViewAllModel) object;
         }
 
+        // Getting user ID from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        userId = sharedPreferences.getInt("user_id", -1); // Default is -1 if not found
+
+        if (userId != -1) {
+            Toast.makeText(this, "Welcome " + userId, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "User ID error", Toast.LENGTH_SHORT).show();
+        }
+
         quantity = findViewById(R.id.quantity);
         imageView = findViewById(R.id.detailed_img);
         addItem = findViewById(R.id.add_item);
         removeItem = findViewById(R.id.remove_item);
 
-        Name= findViewById(R.id.name_txt);
+        Name = findViewById(R.id.name_txt);
         price = findViewById(R.id.detailed_price);
         des = findViewById(R.id.detailed_des);
         addToCart_btn = findViewById(R.id.add_to_cart);
 
         if(viewAllModel != null){
-
             if (viewAllModel.getImage() != null) {
                 Bitmap bitmap = BitmapFactory.decodeByteArray(viewAllModel.getImage(), 0, viewAllModel.getImage().length);
                 imageView.setImageBitmap(bitmap);
@@ -83,40 +99,37 @@ public class DetailedActivity extends AppCompatActivity {
         addToCart_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 addedtocart();
-
             }
         });
 
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (totalQuantity<10){
+                if (totalQuantity < 10){
                     totalQuantity++;
                     quantity.setText(String.valueOf(totalQuantity));
                 }
-
             }
         });
 
         removeItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (totalQuantity>1){
+                if (totalQuantity > 1){
                     totalQuantity--;
                     quantity.setText(String.valueOf(totalQuantity));
                 }
-
             }
         });
 
+        // Initialize database helper
+        dbHelper = new DBHelper(this);
+        db = dbHelper.getWritableDatabase();
     }
 
-    private void addedtocart(){
-        String saveCurrentDate,saveCurrentTime;
+    private void addedtocart() {
+        String saveCurrentDate, saveCurrentTime;
         Calendar calForDate = Calendar.getInstance();
 
         SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
@@ -125,15 +138,20 @@ public class DetailedActivity extends AppCompatActivity {
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
-        final HashMap<String,Object> cartMap = new HashMap<>();
+        ContentValues values = new ContentValues();
+        values.put("user_id", userId);
+        values.put("productName", viewAllModel.getName());
+        values.put("productPrice", viewAllModel.getPrice()); // Use REAL type for price
+        values.put("productDate", saveCurrentDate);
+        values.put("productTime", saveCurrentTime);
+        values.put("totalQuantity", totalQuantity);
+        values.put("totalPrice", totalPrice);
 
-        cartMap.put("productName",viewAllModel.getName());
-        cartMap.put("productPrice",price.getText().toString());
-        cartMap.put("productDate",saveCurrentDate);
-        cartMap.put("productTime",saveCurrentTime);
-        cartMap.put("totalQuantity",quantity.getText().toString());
-        cartMap.put("totalPrice",totalPrice);
-
+        long newRowId = db.insert("Cart", null, values);
+        if (newRowId != -1) {
+            Toast.makeText(this, "Item added to cart", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Error adding item to cart", Toast.LENGTH_SHORT).show();
+        }
     }
-
 }
