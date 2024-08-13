@@ -31,7 +31,7 @@
                 android:layout_margin="10dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
-                app:cardBackgroundColor="#FFFFFF">
+                app:cardBackgroundColor="#2C2C2C">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -44,27 +44,28 @@
                         android:layout_height="wrap_content"
                         android:text="Welcome to FoodieHut"
                         android:textSize="20sp"
+                        android:fontFamily="@font/poppins_medium"
                         android:textStyle="bold"
-                        android:textColor="#2C2C2C"/>
+                        android:textColor="#FFFFFF"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Discover our latest offerings and special deals."
                         android:textSize="14sp"
-                        android:textColor="#666666"
-                        android:layout_marginTop="8dp"/>
+                        android:textColor="#A6A6A6"  />
 
                     <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="207dp"
+                        android:layout_height="33dp"
+                        android:layout_gravity="left"
                         android:layout_marginTop="12dp"
-                        android:text="Browse Now"
-                        android:backgroundTint="#F9A826"
-                        android:textColor="#FFFFFF"
+                        android:background="@drawable/button_background"
                         android:fontFamily="@font/poppins_medium"
-                        android:padding="10dp"
-                        android:layout_gravity="center"/>
+                        android:minWidth="100dp"
+                        android:textSize="12dp"
+                        android:text="Browse Now"
+                        android:textColor="#FFFFFF" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
