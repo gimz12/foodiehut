@@ -109,6 +109,9 @@ public class DetailedActivity extends AppCompatActivity {
                 if (totalQuantity < 10){
                     totalQuantity++;
                     quantity.setText(String.valueOf(totalQuantity));
+                    // Update totalPrice based on the new quantity
+                    totalPrice = viewAllModel.getPrice() * totalQuantity;
+                    price.setText(String.format("$%.2f", totalPrice)); // Optionally update the displayed price as well
                 }
             }
         });
@@ -119,6 +122,9 @@ public class DetailedActivity extends AppCompatActivity {
                 if (totalQuantity > 1){
                     totalQuantity--;
                     quantity.setText(String.valueOf(totalQuantity));
+                    // Update totalPrice based on the new quantity
+                    totalPrice = viewAllModel.getPrice() * totalQuantity;
+                    price.setText(String.format("$%.2f", totalPrice)); // Optionally update the displayed price as well
                 }
             }
         });
