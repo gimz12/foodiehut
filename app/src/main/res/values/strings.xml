@@ -32,4 +32,5 @@
     <string name="burger_image" />
     <string name="add_item" />
     <string name="remove_item" />
+    <string name="header_image_desc" />
 </resources>

@@ -13,61 +13,60 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
 
-    <!-- Modern CardView -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/modern_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="6dp"
-        app:cardBackgroundColor="#2C2C2C"
-        android:layout_alignParentTop="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Welcome to FoodieHut"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Discover the best offers and explore our menu. We have something special for you!"
-                android:textSize="16sp"
-                android:textColor="#666666"
-                android:layout_marginTop="8dp"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Explore Foods"
-                android:backgroundTint="#F9A826"
-                android:textColor="#FFFFFF"
-                android:fontFamily="@font/poppins_medium"/>
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/modern_card">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <!-- Header Banner -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/header_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome to FoodieHut"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#2C2C2C"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discover our latest offerings and special deals."
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="8dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Browse Now"
+                        android:backgroundTint="#F9A826"
+                        android:textColor="#FFFFFF"
+                        android:fontFamily="@font/poppins_medium"
+                        android:padding="10dp"
+                        android:layout_gravity="center"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <EditText
                 android:id="@+id/searchbox"

@@ -10,7 +10,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="12dp">
@@ -21,8 +20,9 @@
             android:layout_height="60dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/baseline_local_pizza_24"
-            android:contentDescription="@string/category_image_description"
-            android:scaleType="fitCenter"/>
+            android:scaleType="centerInside"
+            android:background="@drawable/imageview_background"/>
+
 
         <TextView
             android:id="@+id/cat_home_name"
@@ -31,7 +31,7 @@
             android:text="Category Name"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:padding="4dp"
             android:gravity="center"/>

@@ -13,9 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodiehut.Admin.LoginAdmin;
-import com.example.foodiehut.Admin.SignUpAdmin;
-
 public class MainActivity extends AppCompatActivity {
 
     private com.example.foodiehut.DBHelper DBHelper;
