@@ -1,84 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="3dp"
-    app:cardElevation="3dp"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/view_img"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/baseline_fastfood_24"/>
-
+        <!-- Header Section -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/view_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name"
+                android:text="Burger Specials"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
-
+                android:textStyle="bold"
+                android:textColor="#2C2C2C"/>
 
             <TextView
-                android:id="@+id/view_des"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description"
-                android:textSize="15sp" />
-
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price $" />
-
-                <TextView
-                    android:id="@+id/view_price"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="30.00" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:layout_gravity="end"
-                android:layout_marginTop="55dp"
-                android:layout_marginRight="5dp"/>
-
-
-
+                android:text="Check out our latest burger creations and specials!"
+                android:textSize="16sp"
+                android:paddingTop="4dp"
+                android:textColor="#2C2C2C"/>
 
         </LinearLayout>
 
+        <!-- Item List -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
+            <ImageView
+                android:id="@+id/view_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/baseline_fastfood_24"
+                android:contentDescription="@string/burger_image"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/image_view_border"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/view_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Burger Name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#2C2C2C"/>
+
+                <TextView
+                    android:id="@+id/view_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delicious description of the burger."
+                    android:textSize="14sp"
+                    android:paddingTop="4dp"
+                    android:textColor="#6D6D6D"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:text="Price: $"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#2C2C2C"/>
+
+                    <TextView
+                        android:id="@+id/view_price"
+                        android:text="12.00"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FF5722"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Details"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/button_background"
+                    android:layout_marginTop="10dp"
+                    android:padding="8dp"/>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

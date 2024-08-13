@@ -29,4 +29,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="logo_description" />
     <string name="category_image_description" />
+    <string name="burger_image" />
+    <string name="add_item" />
+    <string name="remove_item" />
 </resources>

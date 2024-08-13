@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodiehut.Admin.LoginAdmin;
+import com.example.foodiehut.Admin.SignUpAdmin;
+
 public class MainActivity extends AppCompatActivity {
 
     private com.example.foodiehut.DBHelper DBHelper;
@@ -43,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, LoginUser.class);
+                startActivity(intent);
             }
         });
     }

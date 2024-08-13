@@ -30,6 +30,7 @@ public class LoginAdmin extends AppCompatActivity {
     private Button loginButton;
     private TextView signupLink;
     private TextView loginlink;
+    private TextView userlink;
 
     private DBHelper dbHelper;
 
@@ -43,6 +44,7 @@ public class LoginAdmin extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         signupLink = findViewById(R.id.signup_link);
         loginlink = findViewById(R.id.login_link);
+        userlink = findViewById(R.id.user_link);
 
         dbHelper = new DBHelper(this);
 
@@ -60,7 +62,7 @@ public class LoginAdmin extends AppCompatActivity {
         signupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginAdmin.this, AddMenuItemAdmin.class);
+                Intent intent = new Intent(LoginAdmin.this, SignUpAdmin.class);
                 startActivity(intent);
             }
         });
@@ -69,6 +71,14 @@ public class LoginAdmin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginAdmin.this, AddMenuItemAdmin.class);
+                startActivity(intent);
+            }
+        });
+
+        userlink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginAdmin.this, LoginUser.class);
                 startActivity(intent);
             }
         });
