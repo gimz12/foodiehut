@@ -100,6 +100,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY(highest_demand_item_id) REFERENCES MenuItems(item_id), " +
                 "FOREIGN KEY(highest_rating_item_id) REFERENCES MenuItems(item_id))");
 
+        //Cart Table
+        db.execSQL("CREATE TABLE Analytics (" +
+                "analytics_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "month TEXT NOT NULL, " +
+                "highest_demand_item_id INTEGER NOT NULL, " +
+                "highest_rating_item_id INTEGER NOT NULL, " +
+                "total_orders INTEGER NOT NULL, " +
+                "total_revenue REAL NOT NULL, " +
+                "FOREIGN KEY(highest_demand_item_id) REFERENCES MenuItems(item_id), " +
+                "FOREIGN KEY(highest_rating_item_id) REFERENCES MenuItems(item_id))");
+
 
     }
 

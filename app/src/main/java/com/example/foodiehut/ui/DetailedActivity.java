@@ -31,7 +31,7 @@ public class DetailedActivity extends AppCompatActivity {
     double totalPrice = 0 ;
 
     ImageView imageView;
-    TextView price,des;
+    TextView price,des,Name;
     Button addToCart_btn;
     ImageView addItem,removeItem;
     Toolbar toolbar;
@@ -59,6 +59,7 @@ public class DetailedActivity extends AppCompatActivity {
         addItem = findViewById(R.id.add_item);
         removeItem = findViewById(R.id.remove_item);
 
+        Name= findViewById(R.id.name_txt);
         price = findViewById(R.id.detailed_price);
         des = findViewById(R.id.detailed_des);
         addToCart_btn = findViewById(R.id.add_to_cart);
@@ -74,6 +75,7 @@ public class DetailedActivity extends AppCompatActivity {
 
             price.setText(String.format("$%.2f", viewAllModel.getPrice()));
             des.setText(viewAllModel.getDescription());
+            Name.setText(viewAllModel.getName());
 
             totalPrice = viewAllModel.getPrice() * totalQuantity;
         }
