@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">#F9A826</color>
+    <color name="colorPrimaryDark">#F9A826</color>
+    <color name="colorAccent">#2c2c2c</color>
+    <!-- Define additional colors as needed -->
+    <color name="colorBackground">#FFFFFF</color> <!-- Example background color -->
+    <color name="colorTextPrimary">#000000</color> <!-- Example text color -->
 </resources>
