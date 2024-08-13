@@ -5,31 +5,68 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_width="wrap_content"
+        android:layout_height="334dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/undraw_online_groceries_a02y" />
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login to Your Account"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
-        android:inputType="text" />
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="15sp"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="16dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="15sp"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginBottom="24dp" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log In" />
+        android:text="Login"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#F9A826"
+        android:layout_marginBottom="12dp" />
 
     <TextView
         android:id="@+id/signup_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Don't have an account? Sign Up"
-        android:textColor="@android:color/holo_blue_light"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="#F9A826"
+        android:layout_gravity="center"
+        android:textSize="14sp"
         android:layout_marginTop="16dp" />
 </LinearLayout>
