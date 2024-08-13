@@ -1,4 +1,4 @@
-package com.example.foodiehut;
+package com.example.foodiehut.Admin;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,28 +17,32 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.foodiehut.Admin.LoginAdmin;
+import com.example.foodiehut.DBHelper;
+import com.example.foodiehut.LoginUser;
+import com.example.foodiehut.MainActivity;
+import com.example.foodiehut.R;
+import com.example.foodiehut.nav;
 
-public class LoginUser extends AppCompatActivity {
+public class LoginAdmin extends AppCompatActivity {
 
     private EditText usernameEditText;
     private EditText passwordEditText;
     private Button loginButton;
     private TextView signupLink;
-    private TextView adminlink;
+    private TextView loginlink;
 
     private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_user);
+        setContentView(R.layout.activity_login_admin);
 
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
         signupLink = findViewById(R.id.signup_link);
-        adminlink = findViewById(R.id.adminLink);
+        loginlink = findViewById(R.id.login_link);
 
         dbHelper = new DBHelper(this);
 
@@ -48,7 +52,7 @@ public class LoginUser extends AppCompatActivity {
                 try {
                     login();
                 } catch (Exception e) {
-                    Toast.makeText(LoginUser.this, "An error occurred: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginAdmin.this, "An error occurred: " + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -56,15 +60,15 @@ public class LoginUser extends AppCompatActivity {
         signupLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginUser.this, MainActivity.class);
+                Intent intent = new Intent(LoginAdmin.this, AddMenuItemAdmin.class);
                 startActivity(intent);
             }
         });
 
-        adminlink.setOnClickListener(new View.OnClickListener() {
+        loginlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginUser.this, LoginAdmin.class);
+                Intent intent = new Intent(LoginAdmin.this, AddMenuItemAdmin.class);
                 startActivity(intent);
             }
         });
@@ -85,12 +89,12 @@ public class LoginUser extends AppCompatActivity {
         try {
             db = dbHelper.getReadableDatabase();
 
-            String[] projection = {"user_id"};
+            String[] projection = {"admin_id"};
             String selection = "username = ? AND password = ?";
             String[] selectionArgs = {username, password};
 
             cursor = db.query(
-                    "Users",
+                    "Admins",
                     projection,
                     selection,
                     selectionArgs,
@@ -101,7 +105,7 @@ public class LoginUser extends AppCompatActivity {
 
             if (cursor != null && cursor.moveToFirst()) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, nav.class);
+                Intent intent = new Intent(this, AddMenuItemAdmin.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
@@ -112,5 +116,4 @@ public class LoginUser extends AppCompatActivity {
             Toast.makeText(this, "An error occurred: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
 }
