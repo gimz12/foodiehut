@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.DetailedActivity">
-    
+
+    <!-- Product Image -->
     <ImageView
         android:id="@+id/detailed_img"
         android:layout_width="0dp"
@@ -14,137 +15,125 @@
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-    
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.0"
-        android:background="@color/cardview_dark_background"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Detailed Products"
-        />
-    
+        app:title="Product Details"
+        app:titleTextColor="@android:color/white"/>
+
+    <!-- Price Text -->
     <TextView
         android:id="@+id/detailed_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Price :30/Kg"
-        android:textColor="@color/black"
-        android:textSize="25sp"
+        android:text="Price: $30/Kg"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/detailed_img"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"/>
-    
-    <ImageView
-        android:layout_width="75dp"
-        android:layout_height="35dp"
-        android:src="@drawable/rating"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailed_img"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="14dp"/>
-    
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="5.0"
-        android:layout_marginTop="4dp"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/detailed_img"
-        app:layout_constraintTop_toBottomOf="@+id/detailed_img"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <!-- Rating Section -->
+
+
+
+    <!-- Description Header -->
     <TextView
         android:id="@+id/des_topic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailed_price"/>
+        app:layout_constraintTop_toBottomOf="@id/detailed_price"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
 
+    <!-- Description Text -->
     <TextView
         android:id="@+id/detailed_des"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/description"
-        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/des_topic"/>
+        app:layout_constraintTop_toBottomOf="@id/des_topic"/>
 
+    <!-- Footer Section -->
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#90EE90"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/add_item"
-            android:layout_width="39dp"
-            android:layout_height="36dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginBottom="15dp"
-            android:src="@drawable/square" />
-
-        <TextView
-            android:id="@+id/quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="19dp"
-            android:layout_marginBottom="11dp"
-            android:layout_toEndOf="@+id/add_item"
-            android:text="1"
-            android:layout_marginRight="7dp"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="4dp"/>
-
-        <ImageView
-            android:id="@+id/remove_item"
-            android:layout_width="34dp"
-            android:layout_height="39dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="19dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="13dp"
-            android:layout_toEndOf="@+id/quantity"
-            android:src="@drawable/minus" />
-
+        <!-- Add to Cart Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_to_cart"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="11dp"
-            android:background="@drawable/btn_bg_detailed"
+            android:layout_centerVertical="true"
+            android:background="@drawable/button_background"
             android:text="Add To Cart"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textStyle="bold"/>
 
+        <!-- Quantity Controls -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/add_item"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/add_item"
+                android:src="@drawable/square" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_toEndOf="@id/add_item"
+                android:textColor="#FFFFFF"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"/>
+
+            <ImageView
+                android:id="@+id/remove_item"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/minus"
+                android:contentDescription="@string/remove_item"
+                android:layout_toEndOf="@id/quantity"/>
+        </RelativeLayout>
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
