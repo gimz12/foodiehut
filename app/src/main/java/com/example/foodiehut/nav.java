@@ -1,8 +1,10 @@
 package com.example.foodiehut;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +22,7 @@ public class nav extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityNavBinding binding;
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,21 @@ public class nav extends AppCompatActivity {
 
         binding = ActivityNavBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        userId = getIntent().getIntExtra("user_id", -1);
+
+        if (userId != -1) {
+            Toast.makeText(this, "Welcome"+userId, Toast.LENGTH_SHORT).show();
+        } else {
+            // Handle the case where user_id wasn't passed
+            Toast.makeText(this, "User ID not found", Toast.LENGTH_SHORT).show();
+        }
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("user_id", userId);  // Assuming userId is obtained during login
+        editor.apply();
+
 
         setSupportActionBar(binding.appBarNav.toolbar);
         binding.appBarNav.fab.setOnClickListener(new View.OnClickListener() {

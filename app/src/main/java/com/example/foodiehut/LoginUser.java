@@ -110,9 +110,17 @@ public class LoginUser extends AppCompatActivity {
             );
 
             if (cursor != null && cursor.moveToFirst()) {
+                // Retrieve the user_id
+                int userId = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
+
+                // Show a login success message
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
+
+                // Pass the user_id to the next activity
                 Intent intent = new Intent(this, nav.class);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
+                finish(); // Close the login activity
             } else {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
@@ -120,6 +128,13 @@ public class LoginUser extends AppCompatActivity {
             Toast.makeText(this, "Database error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(this, "An error occurred: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
     }
 
