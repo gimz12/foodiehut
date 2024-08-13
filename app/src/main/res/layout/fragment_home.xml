@@ -6,17 +6,63 @@
     android:layout_height="match_parent"
     android:background="#F3F1F1"
     tools:context=".ui.home.HomeFragment">
-    
+
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
-    
+
+    <!-- Modern CardView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/modern_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#2C2C2C"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome to FoodieHut"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discover the best offers and explore our menu. We have something special for you!"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:layout_marginTop="8dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Explore Foods"
+                android:backgroundTint="#F9A826"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/poppins_medium"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/modern_card">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,10 +84,7 @@
                 android:textColorHint="@color/black"
                 android:textSize="16sp"
                 android:inputType="text"
-                android:gravity="start|center_vertical">
-
-
-        </EditText>
+                android:gravity="start|center_vertical"/>
 
             <LinearLayout
                 android:layout_marginLeft="10dp"
@@ -55,29 +98,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Populer Dishes"
+                    android:text="Popular Dishes"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/view_all_populer"
+                    android:id="@+id/view_all_popular"
                     android:layout_weight="1"
                     android:text="View All"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="end"
                     android:layout_marginRight="7dp"
                     android:textSize="16sp"
-                    android:textColor="#050C9C"/>
-
+                    android:textColor="#2C2C2C"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:id="@+id/pop_rec"
-                />
+                android:id="@+id/pop_rec"/>
 
             <LinearLayout
                 android:layout_marginLeft="10dp"
@@ -101,19 +143,18 @@
                     android:id="@+id/view_all_explore"
                     android:layout_weight="1"
                     android:text="View All"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="end"
                     android:layout_marginRight="7dp"
                     android:textSize="16sp"
-                    android:textColor="#050C9C"/>
-
+                    android:textColor="#2C2C2C"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:id="@+id/categories_rec"
-                />
+                android:id="@+id/categories_rec"/>
 
             <LinearLayout
                 android:layout_marginLeft="10dp"
@@ -137,24 +178,18 @@
                     android:id="@+id/view_all_recommended"
                     android:layout_weight="1"
                     android:text="View All"
+                    android:fontFamily="@font/poppins_medium"
                     android:gravity="end"
                     android:layout_marginRight="7dp"
                     android:textSize="16sp"
-                    android:textColor="#050C9C"/>
-
+                    android:textColor="#2C2C2C"/>
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:id="@+id/recommended_rec"
-                />
-
-
-
+                android:id="@+id/recommended_rec"/>
         </LinearLayout>
-
     </ScrollView>
-
 </RelativeLayout>
