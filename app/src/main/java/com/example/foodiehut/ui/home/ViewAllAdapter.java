@@ -1,6 +1,7 @@
 package com.example.foodiehut.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodiehut.R;
+import com.example.foodiehut.ui.DetailedActivity;
 
 import java.util.List;
 
@@ -47,6 +49,16 @@ public class ViewAllAdapter extends RecyclerView.Adapter<ViewAllAdapter.ViewHold
         } else {
             holder.imageView.setImageResource(R.drawable.ic_launcher_background); // Fallback image if none
         }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailedActivity.class);
+                intent.putExtra("detail",viewAllModelList.get(position));
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 

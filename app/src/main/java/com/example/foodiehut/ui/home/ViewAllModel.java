@@ -1,6 +1,8 @@
 package com.example.foodiehut.ui.home;
 
-public class ViewAllModel {
+import java.io.Serializable;
+
+public class ViewAllModel implements Serializable {
 
     private String name;
     private String description;
