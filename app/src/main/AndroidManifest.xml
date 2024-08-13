@@ -22,7 +22,9 @@
             android:exported="false" />
         <activity
             android:name=".Admin.AddMenuItemAdmin"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".nav"
             android:exported="true"
@@ -36,7 +38,9 @@
         </activity>
         <activity
             android:name=".Home"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".LoginUser"
             android:exported="false" />
