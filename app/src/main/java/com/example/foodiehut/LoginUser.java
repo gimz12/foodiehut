@@ -26,6 +26,7 @@ public class LoginUser extends AppCompatActivity {
     private Button loginButton;
     private TextView signupLink;
     private TextView adminlink;
+    private TextView Bypass;
 
     private DBHelper dbHelper;
 
@@ -39,6 +40,7 @@ public class LoginUser extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         signupLink = findViewById(R.id.signup_link);
         adminlink = findViewById(R.id.adminLink);
+        Bypass = findViewById(R.id.bypass_link);
 
         dbHelper = new DBHelper(this);
 
@@ -65,6 +67,14 @@ public class LoginUser extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginUser.this, LoginAdmin.class);
+                startActivity(intent);
+            }
+        });
+
+        Bypass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginUser.this, nav.class);
                 startActivity(intent);
             }
         });
