@@ -8,36 +8,43 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/baseline_home_24"
             android:title="@string/menu_home"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_home"/>
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/baseline_manage_accounts_24"
             android:title="@string/menu_profile"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_profile"/>
         <item
             android:id="@+id/nav_menu"
             android:icon="@drawable/baseline_restaurant_menu_24"
             android:title="@string/menu_foodMenu"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_menu"/>
         <item
             android:id="@+id/nav_orderHistory"
             android:icon="@drawable/baseline_history_24"
             android:title="@string/menu_orderHistory"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_order_history"/>
         <item
             android:id="@+id/nav_trackOrder"
             android:icon="@drawable/baseline_delivery_dining_24"
             android:title="@string/menu_trackOrder"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_track_order"/>
         <item
             android:id="@+id/nav_promo"
             android:icon="@drawable/baseline_local_offer_24"
             android:title="@string/menu_promo"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_promotion"/>
         <item
             android:id="@+id/nav_cart"
             android:icon="@drawable/baseline_shopping_cart_24"
             android:title="@string/menu_cart"
+            android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_my_cart"/>
     </group>
 </menu>

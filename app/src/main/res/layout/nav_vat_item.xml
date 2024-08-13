@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="5dp"
-    android:elevation="4dp"
-    android:layout_marginTop="2dp"
-    android:layout_marginBottom="10dp">
-    
+    app:cardCornerRadius="12dp"
+    android:elevation="6dp"
+    android:layout_margin="8dp"
+    android:background="#FFFFFF">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#DFFFD1"
-        android:orientation="horizontal">
-        
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@android:color/white">
+
         <ImageView
-            android:background="@drawable/border"
             android:id="@+id/cat_nav_img"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/baseline_fastfood_24"/>
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/baseline_fastfood_24"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/image_view_border"/>
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/nav_cat_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                android:textSize="24sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:paddingBottom="4dp"/>
+
             <TextView
                 android:id="@+id/nav_cat_des"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:textSize="15sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
                 android:textColor="@color/black"/>
-            
-            <ImageView
+
+            <Button
+                android:id="@+id/view_more_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_arrow_forward_ios_24"
-                android:layout_gravity="end"
-                android:layout_marginTop="55dp"
-                android:layout_marginRight="5dp"/>
-
-
-
+                android:text="View More Details"
+                android:minWidth="100dp"
+                android:minHeight="30dp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/button_background"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="start"/>
 
         </LinearLayout>
 
-
-        
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
