@@ -1,6 +1,8 @@
 package com.example.foodiehut;
 
-public class MyCart {
+import java.io.Serializable;
+
+public class MyCart implements Serializable {
 
     String productname;
     double productprice;

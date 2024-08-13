@@ -54,14 +54,12 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Orders (" +
                 "order_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "user_id INTEGER NOT NULL, " +
-                "admin_id INTEGER, " +
                 "order_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, " +
                 "total_price REAL NOT NULL, " +
                 "status TEXT NOT NULL CHECK(status IN ('pending', 'processed', 'delivered', 'cancelled')), " +
                 "delivery_location TEXT, " +
                 "promo_code TEXT, " +
-                "FOREIGN KEY(user_id) REFERENCES Users(user_id), " +
-                "FOREIGN KEY(admin_id) REFERENCES Admins(admin_id))");
+                "FOREIGN KEY(user_id) REFERENCES Users(user_id))");
 
         db.execSQL("CREATE TABLE OrderItems (" +
                 "order_item_id INTEGER PRIMARY KEY AUTOINCREMENT, " +

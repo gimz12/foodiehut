@@ -1,6 +1,7 @@
 package com.example.foodiehut;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -95,7 +96,7 @@ public class LoginUser extends AppCompatActivity {
         try {
             db = dbHelper.getReadableDatabase();
 
-            String[] projection = {"user_id"};
+            String[] projection = {"user_id", "address"};
             String selection = "username = ? AND password = ?";
             String[] selectionArgs = {username, password};
 
@@ -110,8 +111,16 @@ public class LoginUser extends AppCompatActivity {
             );
 
             if (cursor != null && cursor.moveToFirst()) {
-                // Retrieve the user_id
+                // Retrieve the user_id and address
                 int userId = cursor.getInt(cursor.getColumnIndexOrThrow("user_id"));
+                String address = cursor.getString(cursor.getColumnIndexOrThrow("address"));
+
+                // Store user_id and address in SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("user_id", userId);
+                editor.putString("user_address", address);
+                editor.apply();
 
                 // Show a login success message
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();

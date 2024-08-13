@@ -1,5 +1,6 @@
 package com.example.foodiehut;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -11,8 +12,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MyCartFragment extends Fragment {
@@ -20,9 +23,11 @@ public class MyCartFragment extends Fragment {
     RecyclerView recyclerView;
     MyCartAdapter myCartAdapter;
     List<MyCart> myCartList;
+    Button buynow;
 
     private DBHelper dbHelper;
     private int userId;
+    double totalPrice;
 
     public MyCartFragment() {
         // Required empty public constructor
@@ -34,6 +39,7 @@ public class MyCartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_cart, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerview);
+        buynow = view.findViewById(R.id.buy_now_btn);
 
         // Set Layout Manager for RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -57,10 +63,20 @@ public class MyCartFragment extends Fragment {
             recyclerView.setAdapter(myCartAdapter);
 
             // Set the total price in the TextView
-            double totalPrice = calculateTotalPrice(myCartList);
+            totalPrice = calculateTotalPrice(myCartList);
             TextView totalPriceTextView = view.findViewById(R.id.textView2);
             totalPriceTextView.setText(String.format("Total Price: $%.2f", totalPrice));
         }
+
+        buynow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  new Intent(getContext(), PlacedOrders.class);
+                intent.putExtra("total_price", totalPrice);
+                intent.putExtra("itemlist", (Serializable) myCartList);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
