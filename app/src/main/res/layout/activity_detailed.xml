@@ -120,8 +120,8 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
-
                 android:layout_toEndOf="@id/add_item"
+                android:textColor="#FFFFF"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"/>
