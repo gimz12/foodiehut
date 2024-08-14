@@ -18,22 +18,15 @@
         android:theme="@style/Theme.FoodieHut"
         tools:targetApi="31">
         <activity
-            android:name=".StoreMapActivity"
-            android:exported="true" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:name=".OrderDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".PlacedOrders"
             android:exported="false" />
         <activity
             android:name=".Admin.SignUpAdmin"
-            android:exported="false">
+            android:exported="true">
+
 
         </activity>
         <activity
@@ -51,6 +44,18 @@
         <activity
             android:name=".Admin.AddMenuItemAdmin"
             android:exported="false" />
+
+        <activity
+            android:name=".StoreMapActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".nav"
             android:exported="false"
@@ -72,3 +77,4 @@
     </application>
 
 </manifest>
+
