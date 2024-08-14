@@ -33,4 +33,6 @@
     <string name="add_item" />
     <string name="remove_item" />
     <string name="header_image_desc" />
+    <string name="product_image_description" />
+    <string name="order_confirmed" />
 </resources>

@@ -13,6 +13,8 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
+
+
         <ImageView
             android:id="@+id/cart_img"
             android:layout_width="400dp"
@@ -37,15 +39,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cart_img"/>
 
-
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/textView2"
@@ -81,8 +81,8 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimaryDark"
-            android:text="Buy Now"
+            android:background="#D01C1C"
+            android:text="Proceed to Checkout"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
