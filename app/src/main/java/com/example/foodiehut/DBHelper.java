@@ -169,4 +169,10 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return cartItems;
     }
+
+    public void deleteCartItem(String productName, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("Cart", "productName = ? AND user_id = ?", new String[]{productName, String.valueOf(userId)});
+        db.close();
+    }
 }

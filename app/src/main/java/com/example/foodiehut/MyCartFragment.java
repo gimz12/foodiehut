@@ -59,7 +59,7 @@ public class MyCartFragment extends Fragment {
             Log.d("MyCartFragment", "Number of items in cart: " + myCartList.size());
 
             // Set up the adapter
-            myCartAdapter = new MyCartAdapter(getContext(), myCartList);
+            myCartAdapter = new MyCartAdapter(getContext(), myCartList,userId);
             recyclerView.setAdapter(myCartAdapter);
 
             // Set the total price in the TextView
