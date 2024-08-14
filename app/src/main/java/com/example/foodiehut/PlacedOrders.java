@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,16 +22,21 @@ public class PlacedOrders extends AppCompatActivity {
     private List<MyCart> myCartList;
     private double totalPrice;
     private SQLiteDatabase db;
+    private TextView orderNumberTextView, totalPriceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_placed_orders);
 
+        // Initialize TextViews
+        orderNumberTextView = findViewById(R.id.order_number);
+        totalPriceTextView = findViewById(R.id.total_price);
+
         // Initialize DBHelper
         dbHelper = new DBHelper(this);
 
-        // Retrieve cart items from intent
+        // Retrieve cart items and total price from intent
         Intent intent = getIntent();
         totalPrice = intent.getDoubleExtra("total_price", 0.0);
         myCartList = (List<MyCart>) intent.getSerializableExtra("itemlist");
@@ -44,20 +50,27 @@ public class PlacedOrders extends AppCompatActivity {
         // Open the database for writing
         db = dbHelper.getWritableDatabase();
 
-        // Place the order
-        placeOrder();
+        // Place the order and retrieve order ID
+        long orderId = placeOrder();
+
+        // Display order ID and total price
+        if (orderId != -1) {
+            orderNumberTextView.setText(String.valueOf(orderId));
+            totalPriceTextView.setText(String.format("Total Price: $%.2f", totalPrice));
+        }
     }
 
-    private void placeOrder() {
+    private long placeOrder() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         int userId = sharedPreferences.getInt("user_id", -1);
         String address = sharedPreferences.getString("user_address", "");
 
         if (userId == -1) {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
-            return;
+            return -1;
         }
 
+        long orderId = -1;
         try {
             // Insert into Orders table
             ContentValues orderValues = new ContentValues();
@@ -66,7 +79,7 @@ public class PlacedOrders extends AppCompatActivity {
             orderValues.put("delivery_location", address);
             orderValues.put("status", "pending");
 
-            long orderId = db.insert("Orders", null, orderValues);
+            orderId = db.insert("Orders", null, orderValues);
 
             if (orderId != -1) {
                 // Insert into OrderItems table
@@ -80,7 +93,6 @@ public class PlacedOrders extends AppCompatActivity {
                 }
 
                 deleteCartItems(userId);
-
                 Toast.makeText(this, "Order placed successfully!", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Error placing order", Toast.LENGTH_SHORT).show();
@@ -92,6 +104,8 @@ public class PlacedOrders extends AppCompatActivity {
                 db.close();
             }
         }
+
+        return orderId;
     }
 
     private int getItemIdByName(String name) {
