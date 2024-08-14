@@ -1,41 +1,114 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+    <!-- Search Bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:padding="16dp"
-        android:gravity="center_horizontal"
-        android:background="@android:color/transparent">
+        android:padding="8dp"
+        android:background="@drawable/search_bar_background"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/mapTypeButton"
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change Map Type"
-            android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"
-            android:textColor="@android:color/white"
-            android:padding="8dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="@android:color/darker_gray"
             android:layout_marginEnd="8dp" />
 
-        <Button
-            android:id="@+id/directionsButton"
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search location"
+            android:background="@null"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:inputType="text"
+            android:drawablePadding="8dp"
+            android:textSize="16sp" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Get Directions"
-            android:layout_weight="1"
-            android:background="@android:color/holo_green_dark"
-            android:textColor="@android:color/white"
-            android:padding="8dp" />
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:tint="@android:color/darker_gray"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Clear search" />
     </LinearLayout>
+
+    <!-- MapView -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/search_bar"
+        android:layout_above="@id/bottomCard" />
+
+    <!-- Bottom Card for Buttons and Details -->
+    <RelativeLayout
+        android:id="@+id/bottomCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp"
+        android:background="@drawable/card_background"
+        android:elevation="8dp">
+
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Location: Updating..."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingBottom="4dp"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/nearestStoreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nearest Store: Updating..."
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:paddingBottom="8dp"
+            android:layout_below="@id/locationTextView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nearestStoreTextView"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="8dp">
+
+            <Button
+                android:id="@+id/mapTypeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Map Type"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/white"
+                android:padding="12dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/directionsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get Directions"
+                android:layout_weight="1"
+                android:background="@drawable/button_background"
+                android:textColor="@android:color/white"
+                android:padding="12dp" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -29,10 +31,13 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
     private MapView mapView;
     private Button mapTypeButton;
     private Button directionsButton;
+    private TextView locationTextView;
+    private TextView nearestStoreTextView;
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
     private LatLng userLocation;
     private LatLng nearestStore;
+    private Marker userMarker; // Marker for the user's location
 
     private LatLng[] stores = {
             new LatLng(6.9271, 79.8612), // Colombo
@@ -42,7 +47,7 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
             new LatLng(7.2008, 79.8737)  // Negombo
     };
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint({"MissingPermission", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,8 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
         mapView = findViewById(R.id.mapView);
         mapTypeButton = findViewById(R.id.mapTypeButton);
         directionsButton = findViewById(R.id.directionsButton);
+        locationTextView = findViewById(R.id.locationTextView);
+        nearestStoreTextView = findViewById(R.id.nearestStoreTextView);
         directionsButton.setEnabled(false);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -93,15 +100,32 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
                 if (location != null) {
                     userLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
+                    // Update locationTextView with the current location
+                    locationTextView.setText(String.format("Current Location: %.4f, %.4f", userLocation.latitude, userLocation.longitude));
+
+                    // Update the user's location marker on the map
+                    if (userMarker == null) {
+                        userMarker = mMap.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
+                    } else {
+                        userMarker.setPosition(userLocation);
+                    }
+
+                    // Move the camera to the user's location
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12));
+
                     // Find the nearest store based on the updated location
                     nearestStore = findNearestStore(userLocation, stores);
-
-                    // Update the map to show the nearest store
-                    updateMap(nearestStore);
 
                     // Enable the directions button after finding the nearest store
                     if (nearestStore != null) {
                         directionsButton.setEnabled(true);
+
+                        // Update nearestStoreTextView with the nearest store information
+                        float distance = calculateDistance(userLocation, nearestStore);
+                        nearestStoreTextView.setText(String.format("Nearest Store: %.4f, %.4f (%.2f km away)", nearestStore.latitude, nearestStore.longitude, distance / 1000));
+
+                        // Update the map to show the nearest store
+                        updateMap(nearestStore);
                     }
                 }
             }
@@ -155,11 +179,16 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
         }
     }
 
+    private float calculateDistance(LatLng from, LatLng to) {
+        float[] results = new float[1];
+        Location.distanceBetween(from.latitude, from.longitude, to.latitude, to.longitude, results);
+        return results[0];
+    }
+
     private void getDirectionsToNearestStore(LatLng nearestStore) {
         if (nearestStore != null && userLocation != null) {
             String uri = "http://maps.google.com/maps?saddr=" + userLocation.latitude + "," + userLocation.longitude + "&daddr=" + nearestStore.latitude + "," + nearestStore.longitude;
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-            intent.setPackage("com.google.android.apps.maps");
             startActivity(intent);
         }
     }
@@ -168,21 +197,25 @@ public class StoreMapActivity extends AppCompatActivity implements OnMapReadyCal
     protected void onResume() {
         super.onResume();
         mapView.onResume();
-        startLocationUpdates(); // Resume location updates
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mapView.onPause();
-        fusedLocationClient.removeLocationUpdates(locationCallback); // Stop location updates
+        fusedLocationClient.removeLocationUpdates(locationCallback);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
-        fusedLocationClient.removeLocationUpdates(locationCallback); // Clean up location updates
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 
     @Override
