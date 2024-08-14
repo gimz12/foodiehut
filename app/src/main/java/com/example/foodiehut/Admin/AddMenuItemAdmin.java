@@ -17,11 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodiehut.DBHelper;
 import com.example.foodiehut.R;
@@ -32,12 +28,14 @@ import java.io.InputStream;
 public class AddMenuItemAdmin extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int TAKE_PHOTO_REQUEST = 2;
 
     private EditText itemNameEditText;
     private EditText itemDescriptionEditText;
     private EditText itemPriceEditText;
     private ImageView itemImageView;
     private Button chooseImageButton;
+    private Button takePhotoButton;
     private Button addItemButton;
     private TextView statusMessageTextView;
     private Spinner categorySpinner;
@@ -55,10 +53,10 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         itemPriceEditText = findViewById(R.id.item_price);
         itemImageView = findViewById(R.id.item_image);
         chooseImageButton = findViewById(R.id.choose_image_button);
+        takePhotoButton = findViewById(R.id.take_photo_button);
         addItemButton = findViewById(R.id.add_item_button);
         statusMessageTextView = findViewById(R.id.status_message);
         categorySpinner = findViewById(R.id.category_spinner);
-
 
         dbHelper = new DBHelper(this);
 
@@ -75,6 +73,13 @@ public class AddMenuItemAdmin extends AppCompatActivity {
             }
         });
 
+        takePhotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCamera();
+            }
+        });
+
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,17 +93,27 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
+    private void openCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, TAKE_PHOTO_REQUEST);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
-            try {
-                InputStream inputStream = getContentResolver().openInputStream(imageUri);
-                selectedImageBitmap = BitmapFactory.decodeStream(inputStream);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null) {
+                Uri imageUri = data.getData();
+                try {
+                    InputStream inputStream = getContentResolver().openInputStream(imageUri);
+                    selectedImageBitmap = BitmapFactory.decodeStream(inputStream);
+                    itemImageView.setImageBitmap(selectedImageBitmap);
+                } catch (Exception e) {
+                    Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
+                }
+            } else if (requestCode == TAKE_PHOTO_REQUEST && data != null && data.getExtras() != null) {
+                selectedImageBitmap = (Bitmap) data.getExtras().get("data");
                 itemImageView.setImageBitmap(selectedImageBitmap);
-            } catch (Exception e) {
-                Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -108,7 +123,6 @@ public class AddMenuItemAdmin extends AppCompatActivity {
         String description = itemDescriptionEditText.getText().toString().trim();
         String priceStr = itemPriceEditText.getText().toString().trim();
         String category = categorySpinner.getSelectedItem().toString();
-
 
         if (name.isEmpty() || priceStr.isEmpty()) {
             statusMessageTextView.setText("Name and Price are required.");

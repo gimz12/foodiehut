@@ -303,5 +303,68 @@ public class DBHelper extends SQLiteOpenHelper {
         return itemName;
     }
 
+    public Cursor getMonthlyFoodDemand(String month) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT MenuItems.category, COUNT(*) AS order_count " +
+                "FROM Orders " +
+                "JOIN OrderItems ON Orders.order_id = OrderItems.order_id " +
+                "JOIN MenuItems ON OrderItems.item_id = MenuItems.item_id " +
+                "WHERE strftime('%Y-%m', Orders.order_date) = ? " +
+                "GROUP BY MenuItems.category " +
+                "ORDER BY order_count DESC;";
+        return db.rawQuery(query, new String[]{month});
+    }
+
+    public int getTotalOrders() {
+        int totalOrders = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) FROM Orders";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            totalOrders = cursor.getInt(0);
+        }
+
+        cursor.close();
+        db.close();
+        return totalOrders;
+    }
+
+    // Method to get the most purchased item
+    public String getMostPurchasedItem() {
+        String mostPurchasedItem = "N/A";
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT name, SUM(quantity) as total_quantity " +
+                "FROM OrderItems INNER JOIN MenuItems ON OrderItems.item_id = MenuItems.item_id " +
+                "GROUP BY name " +
+                "ORDER BY total_quantity DESC " +
+                "LIMIT 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            mostPurchasedItem = cursor.getString(0);
+        }
+
+        cursor.close();
+        db.close();
+        return mostPurchasedItem;
+    }
+
+    // Method to get the total revenue
+    public double getTotalRevenue() {
+        double totalRevenue = 0.0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT SUM(total_price) FROM Orders";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            totalRevenue = cursor.getDouble(0);
+        }
+
+        cursor.close();
+        db.close();
+        return totalRevenue;
+    }
+
 
 }

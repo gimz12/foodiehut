@@ -115,7 +115,7 @@ public class LoginAdmin extends AppCompatActivity {
 
             if (cursor != null && cursor.moveToFirst()) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, AddMenuItemAdmin.class);
+                Intent intent = new Intent(this, AdminHomeActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();

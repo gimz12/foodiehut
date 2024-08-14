@@ -17,18 +17,30 @@
         android:theme="@style/Theme.FoodieHut"
         tools:targetApi="31">
         <activity
+            android:name=".Admin.AdminHomeActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".Admin.AnalyticsActivityAdmin"
+            android:exported="false">
+
+        </activity>
+        <activity
             android:name=".Admin.ManageOrderStatusAdmin"
             android:exported="false" />
         <activity
             android:name=".Admin.ManageOrdersAdmin"
-            android:exported="true">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Admin.ManageMenuItemAdmin"
-            android:exported="false">
-
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".OrderDetailsActivity"
             android:exported="false" />
@@ -43,15 +55,7 @@
             android:exported="false" />
         <activity
             android:name=".Admin.LoginAdmin"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".ui.DetailedActivity"
             android:exported="false" />
