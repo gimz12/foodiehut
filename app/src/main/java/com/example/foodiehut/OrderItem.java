@@ -6,16 +6,18 @@ public class OrderItem {
     private int itemId;
     private int quantity;
     private String customization;
+    private double price; // New field for item price
 
-    public OrderItem(int orderItemId, int orderId, int itemId, int quantity, String customization) {
+    public OrderItem(int orderItemId, int orderId, int itemId, int quantity, String customization, double price) {
         this.orderItemId = orderItemId;
         this.orderId = orderId;
         this.itemId = itemId;
         this.quantity = quantity;
         this.customization = customization;
+        this.price = price; // Initialize price
     }
 
-    // Getters
+    // Getters and Setters
     public int getOrderItemId() {
         return orderItemId;
     }
@@ -36,7 +38,10 @@ public class OrderItem {
         return customization;
     }
 
-    // Setters
+    public double getPrice() {
+        return price;
+    }
+
     public void setOrderItemId(int orderItemId) {
         this.orderItemId = orderItemId;
     }
@@ -55,5 +60,9 @@ public class OrderItem {
 
     public void setCustomization(String customization) {
         this.customization = customization;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }

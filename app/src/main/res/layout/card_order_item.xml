@@ -34,5 +34,11 @@
             android:layout_height="wrap_content"
             android:text="Customization: None"
             android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/total_priceoitem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Price" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

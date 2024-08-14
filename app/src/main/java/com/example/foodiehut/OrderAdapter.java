@@ -62,7 +62,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
             super(itemView);
             orderId = itemView.findViewById(R.id.order_id);
             orderDate = itemView.findViewById(R.id.order_date);
-            totalPrice = itemView.findViewById(R.id.total_price);
+            totalPrice = itemView.findViewById(R.id.total_price_text_view);
             status = itemView.findViewById(R.id.status);
             deliveryLocation = itemView.findViewById(R.id.delivery_location);
         }

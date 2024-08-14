@@ -16,6 +16,7 @@
             android:title="@string/menu_profile"
             android:fontFamily="@font/poppins_medium"
             tools:layout="@layout/fragment_profile"/>
+
         <item
             android:id="@+id/nav_menu"
             android:icon="@drawable/baseline_restaurant_menu_24"

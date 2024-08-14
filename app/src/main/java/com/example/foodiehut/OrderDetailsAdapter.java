@@ -15,10 +15,12 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
 
     private Context context;
     private List<OrderItem> orderItemList;
+    private DBHelper dbHelper;
 
     public OrderDetailsAdapter(Context context, List<OrderItem> orderItemList) {
         this.context = context;
         this.orderItemList = orderItemList;
+        this.dbHelper = new DBHelper(context); // Initialize DBHelper
     }
 
     @NonNull
@@ -31,9 +33,17 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         OrderItem orderItem = orderItemList.get(position);
-        holder.itemNameTextView.setText("Item: " + orderItem.getItemId());
+
+        // Get the item name from the database using the itemId
+        String itemName = dbHelper.getItemNameById(orderItem.getItemId());
+
+        // Calculate the total price for this item
+        double totalPrice = orderItem.getPrice() * orderItem.getQuantity();
+
+        holder.itemNameTextView.setText("Item: " + itemName);
         holder.quantityTextView.setText("Quantity: " + orderItem.getQuantity());
         holder.customizationTextView.setText("Customization: " + orderItem.getCustomization());
+        holder.totalPriceTextView.setText("Total Price: $" + totalPrice);
     }
 
     @Override
@@ -42,13 +52,14 @@ public class OrderDetailsAdapter extends RecyclerView.Adapter<OrderDetailsAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView itemNameTextView, quantityTextView, customizationTextView;
+        TextView itemNameTextView, quantityTextView, customizationTextView, totalPriceTextView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
             itemNameTextView = itemView.findViewById(R.id.item_name_text_view);
             quantityTextView = itemView.findViewById(R.id.quantity_text_view);
             customizationTextView = itemView.findViewById(R.id.customization_text_view);
+            totalPriceTextView = itemView.findViewById(R.id.total_priceoitem);
         }
     }
 }

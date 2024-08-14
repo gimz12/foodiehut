@@ -239,6 +239,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return orders;
     }
 
+    public double getPriceByItemId(int itemId) {
+        double price = 0.0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("MenuItems",
+                new String[]{"price"},
+                "item_id = ?",
+                new String[]{String.valueOf(itemId)},
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            price = cursor.getDouble(cursor.getColumnIndexOrThrow("price"));
+            cursor.close();
+        }
+
+        db.close();
+        return price;
+    }
+
     public List<OrderItem> getOrderItemsByOrderId(int orderId) {
         List<OrderItem> orderItemList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -252,15 +270,37 @@ public class DBHelper extends SQLiteOpenHelper {
                 int quantity = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"));
                 String customization = cursor.getString(cursor.getColumnIndexOrThrow("customization"));
 
-                OrderItem orderItem = new OrderItem(orderItemId, orderId, itemId, quantity, customization);
+                // Fetch the price for this itemId from the MenuItems table
+                double price = getPriceByItemId(itemId);
+
+                // Create an OrderItem object including the price
+                OrderItem orderItem = new OrderItem(orderItemId, orderId, itemId, quantity, customization, price);
                 orderItemList.add(orderItem);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
         db.close();
-
         return orderItemList;
+    }
+
+    public String getItemNameById(int itemId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String itemName = null;
+
+        Cursor cursor = db.query("MenuItems",
+                new String[]{"name"},
+                "item_id = ?",
+                new String[]{String.valueOf(itemId)},
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            itemName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            cursor.close();
+        }
+
+        db.close();
+        return itemName;
     }
 
 
