@@ -41,4 +41,5 @@
         android:name="com.example.foodiehut.MyCartFragment"
         android:label="@string/menu_cart"
         tools:layout="@layout/fragment_my_cart" />
+
 </navigation>
