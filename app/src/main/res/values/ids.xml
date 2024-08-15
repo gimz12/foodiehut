@@ -6,4 +6,6 @@
     <item name="mapView" type="id" />
     <item name="mapTypeButton" type="id" />
     <item name="directionsButton" type="id" />
+    <item name="upload_photo_btn" type="id" />
+    <item name="take_photo_btn" type="id" />
 </resources>
