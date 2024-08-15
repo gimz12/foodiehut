@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodiehut.DBHelper;
+import com.example.foodiehut.EmailHelper;
 import com.example.foodiehut.R;
 
 public class ManageOrderStatusAdmin extends AppCompatActivity {
@@ -55,6 +56,7 @@ public class ManageOrderStatusAdmin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateOrderStatus("processed");
+                sendOrderAcceptedEmail(); // Call to send the email
             }
         });
 
@@ -118,6 +120,18 @@ public class ManageOrderStatusAdmin extends AppCompatActivity {
             case "processed":
                 confirmDeliveryButton.setVisibility(View.VISIBLE);
                 break;
+        }
+    }
+
+    private void sendOrderAcceptedEmail() {
+        String recipientEmail = "kumalillankoon12@gmail.com"; // Hard-coded email address
+        if (recipientEmail != null && !recipientEmail.isEmpty()) {
+            String subject = "Your Order has been Accepted";
+            String body = "Dear Customer,\n\nYour order with Order ID: " + orderId + " has been accepted and is being processed.\n\nThank you for choosing FoodieHut!";
+            EmailHelper.sendEmail(recipientEmail, subject, body);
+            Toast.makeText(this, "Order accepted email sent to " + recipientEmail, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Recipient email is not available", Toast.LENGTH_SHORT).show();
         }
     }
 }
