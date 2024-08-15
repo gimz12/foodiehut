@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,194 +8,174 @@
     tools:context=".ui.Profile.ProfileFragment"
     android:background="#FFFFFF">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/greeting_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Welcome to Your Profile"
-        android:textColor="#2C2C2C"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/profileimage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/circle_background"
-        android:elevation="4dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profilepic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/greeting_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Welcome to Your Profile"
+                android:textColor="#2C2C2C"
+                android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/name_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="Name"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#2C2C2C"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/profilename"
-        app:layout_constraintHorizontal_bias="0.003"
-        app:layout_constraintStart_toStartOf="@+id/profilename"
-        app:layout_constraintTop_toBottomOf="@+id/profileimage" />
+            <ImageView
+                android:id="@+id/profileimage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="left"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/circle_background"
+                android:elevation="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profilepic" />
 
-    <EditText
-        android:id="@+id/profilename"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
-        android:drawableLeft="@drawable/baseline_person_24"
-        android:hint="Your Name"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="15dp"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_label"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_marginTop="8dp"/>
+            <Button
+                android:id="@+id/upload_photo_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Upload Photo"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-    <!-- Email Label -->
+            <Button
+                android:id="@+id/take_photo_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Take Photo"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-    <!-- Profile Email EditText -->
-    <TextView
-        android:id="@+id/email_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Email"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#2C2C2C"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/profile_email"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/profile_email"
-        app:layout_constraintTop_toBottomOf="@+id/profilename" />
+            <TextView
+                android:id="@+id/name_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:text="Name"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#2C2C2C"
+                android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/profile_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
-        android:drawableLeft="@drawable/baseline_alternate_email_24"
-        android:hint="Your Email"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="15dp"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_label"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_marginTop="8dp"/>
+            <EditText
+                android:id="@+id/profilename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:hint="Your Name"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="15dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
 
-    <!-- Phone Number Label -->
+            <TextView
+                android:id="@+id/email_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Email"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#2C2C2C"
+                android:textSize="14sp" />
 
-    <!-- Profile Phone Number EditText -->
-    <TextView
-        android:id="@+id/phone_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Phone Number"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#2C2C2C"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/profilenumber"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/profilenumber"
-        app:layout_constraintTop_toBottomOf="@+id/profile_email" />
+            <EditText
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:drawableLeft="@drawable/baseline_alternate_email_24"
+                android:hint="Your Email"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="15dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
 
-    <EditText
-        android:id="@+id/profilenumber"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
-        android:drawableLeft="@drawable/baseline_local_phone_24"
-        android:hint="Your Phone Number"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="15dp"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_label"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_marginTop="8dp"/>
+            <TextView
+                android:id="@+id/phone_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Phone Number"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#2C2C2C"
+                android:textSize="14sp" />
 
-    <!-- Address Label -->
+            <EditText
+                android:id="@+id/profilenumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:drawableLeft="@drawable/baseline_local_phone_24"
+                android:hint="Your Phone Number"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="15dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
 
-    <!-- Profile Address EditText -->
-    <TextView
-        android:id="@+id/address_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Address"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#2C2C2C"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/profileaddress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/profileaddress"
-        app:layout_constraintTop_toBottomOf="@+id/profilenumber" />
+            <TextView
+                android:id="@+id/address_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Address"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#2C2C2C"
+                android:textSize="14sp" />
 
-    <EditText
-        android:id="@+id/profileaddress"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
-        android:drawableLeft="@drawable/baseline_location_on_24"
-        android:hint="Your Address"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="15dp"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_label"
-        app:layout_constraintWidth_percent="0.8"
-        android:layout_marginTop="8dp"/>
+            <EditText
+                android:id="@+id/profileaddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_background"
+                android:drawableLeft="@drawable/baseline_location_on_24"
+                android:hint="Your Address"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="15dp"
+                android:drawablePadding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
 
-    <!-- Update Button -->
-    <Button
-        android:id="@+id/update_btn"
-        android:layout_width="183dp"
-        android:layout_height="57dp"
-        android:background="@drawable/button_background"
-        android:fontFamily="@font/poppins_medium"
-        android:padding="14dp"
-        android:text="Update"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileaddress"
-        app:layout_constraintVertical_bias="0.303" />
+            <Button
+                android:id="@+id/update_btn"
+                android:layout_width="183dp"
+                android:layout_height="57dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="14dp"
+                android:text="Update"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,15 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin.HomeAdmin">
+    >
+
 
     <Button
-        android:id="@+id/addMenuItem"
-        android:layout_width="224dp"
-        android:layout_height="180dp"
-        android:text="add menuitem"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/display_user_details"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="172dp"
+        android:text="User_details"
+        android:onClick="onClick"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

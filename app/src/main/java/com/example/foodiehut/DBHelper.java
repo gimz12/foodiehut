@@ -1,5 +1,6 @@
 package com.example.foodiehut;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -178,6 +179,24 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return cartItems;
     }
+
+    public boolean updateUserDetails(int userId, String username, String email, byte[] profileImage, String address, String phoneNumber) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put("username", username);
+        contentValues.put("email", email);
+        contentValues.put("profile_image", profileImage);
+        contentValues.put("address", address);
+        contentValues.put("phone_number", phoneNumber);
+
+        // Update the user's details where the user_id matches
+        int result = db.update("Users", contentValues, "user_id = ?", new String[]{String.valueOf(userId)});
+
+        // Return true if the update was successful, otherwise false
+        return result > 0;
+    }
+
 
     public void deleteCartItem(String productName, int userId) {
         SQLiteDatabase db = this.getWritableDatabase();
