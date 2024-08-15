@@ -53,6 +53,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
+    implementation ("com.sun.mail:javax.mail:1.6.2")
 
 
 
