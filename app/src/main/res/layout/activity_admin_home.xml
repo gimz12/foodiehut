@@ -13,11 +13,14 @@
         android:text="Dashboard"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_medium"
         android:textColor="@color/black"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+
 
     <!-- Total Orders -->
     <TextView
@@ -25,6 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Total Orders: "
+        android:fontFamily="@font/poppins_medium"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/tv_dashboard"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Most Purchased Item: "
+        android:fontFamily="@font/poppins_medium"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/tv_total_orders"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +52,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Total Revenue: "
+        android:fontFamily="@font/poppins_medium"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/tv_most_purchased_item"
         app:layout_constraintStart_toStartOf="parent"

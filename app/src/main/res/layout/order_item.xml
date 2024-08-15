@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="1dp">
+    app:cardCornerRadius="12dp"
+    app:cardElevation="8dp"
+    android:background="@android:color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,46 +14,136 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/order_id"
-            android:layout_width="wrap_content"
+        <!-- Order ID -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order ID: "
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/order_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date: "
-            android:textSize="14sp"
-            android:textColor="@color/black"/>
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/order_id_icon"
+                android:src="@drawable/ic_order_id"
+                android:tint="@color/black" />
 
-        <TextView
-            android:id="@+id/total_price_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total Price: $0.00"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="4dp"/>
+            <TextView
+                android:id="@+id/order_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order ID: "
+                android:fontFamily="@font/poppins_medium"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
+        <!-- Order Date -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Status: "
-            android:textSize="14sp"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/delivery_location"
-            android:layout_width="wrap_content"
+
+            <TextView
+                android:id="@+id/order_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date: "
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <!-- Total Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delivery Location: "
-            android:textSize="14sp"
-            android:textColor="@color/black"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+
+
+            <TextView
+                android:id="@+id/total_price_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Price: $0.00"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Order Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status: "
+                android:textSize="14sp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <!-- Delivery Location -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+
+            <TextView
+                android:id="@+id/delivery_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delivery Location: "
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="start">
+
+            <Button
+                android:id="@+id/reorder_button"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/button_background"
+                android:text="Reorder"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/track_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="Track"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

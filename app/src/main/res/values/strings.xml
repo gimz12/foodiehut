@@ -35,6 +35,8 @@
     <string name="header_image_desc" />
     <string name="product_image_description" />
     <string name="order_confirmed" />
+    <string name="order_id_icon" />
+    <string name="nearby_shops" />
 
     <string-array name="months_array">
         <item>January</item>

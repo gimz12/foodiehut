@@ -52,6 +52,6 @@
             android:icon="@drawable/baseline_location_on_24"
             android:title="Locations"
             android:fontFamily="@font/poppins_medium"
-            tools:layout="@layout/fragment_my_cart"/>
+            tools:layout="@layout/activity_store_map"/>
     </group>
 </menu>
