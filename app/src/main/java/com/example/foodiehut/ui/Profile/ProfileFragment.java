@@ -70,31 +70,17 @@ public class ProfileFragment extends Fragment {
         dbHelper = new DBHelper(getActivity());
 
         // Set the click listener for the update button
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                updateUserProfile();
-            }
-        });
+        updateButton.setOnClickListener(v -> updateUserProfile());
 
         // Set the click listener for the upload photo button
-        uploadPhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImageChooser();
-            }
-        });
+        uploadPhotoButton.setOnClickListener(v -> openImageChooser());
 
         // Set the click listener for the take photo button
-        takePhotoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    openCamera();
-                } else {
-                    requestCameraPermission();
-                }
+        takePhotoButton.setOnClickListener(v -> {
+            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                requestCameraPermission();
             }
         });
     }
@@ -132,25 +118,47 @@ public class ProfileFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
-                profileImageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null) {
+                Uri imageUri = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                    profileImageView.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if (requestCode == CAMERA_REQUEST_CODE && data != null) {
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    Bitmap photo = (Bitmap) extras.get("data");
+                    profileImageView.setImageBitmap(photo);
+                }
             }
-        } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-            profileImageView.setImageBitmap(photo);
         }
     }
 
     private void updateUserProfile() {
+        // Retrieve user input
         String username = nameEditText.getText().toString().trim();
         String email = emailEditText.getText().toString().trim();
         String phoneNumber = phoneEditText.getText().toString().trim();
         String address = addressEditText.getText().toString().trim();
+
+        // Validate input
+        if (username.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
+            Toast.makeText(getActivity(), "All fields are required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidEmail(email)) {
+            Toast.makeText(getActivity(), "Invalid email format", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidPhoneNumber(phoneNumber)) {
+            Toast.makeText(getActivity(), "Invalid phone number", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         // Convert the image to a byte array
         Bitmap bitmap = ((BitmapDrawable) profileImageView.getDrawable()).getBitmap();
@@ -158,6 +166,7 @@ public class ProfileFragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] profileImage = stream.toByteArray();
 
+        // Update user details
         boolean isUpdated = dbHelper.updateUserDetails(userId, username, email, profileImage, address, phoneNumber);
 
         if (isUpdated) {
@@ -166,4 +175,16 @@ public class ProfileFragment extends Fragment {
             Toast.makeText(getActivity(), "Profile Update Failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+    // Check for valid email format
+    private boolean isValidEmail(String email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    // Check for valid phone number (simple example)
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        // This regex allows only digits and should be at least 10 digits long
+        return phoneNumber.matches("\\d{10,}");
+    }
+
 }

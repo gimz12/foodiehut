@@ -36,6 +36,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         // Retrieve and display dashboard data
         displayDashboardData();
 
+
         // Set button click listeners
         btnAddMenuItems.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHomeActivity.this, AddMenuItemAdmin.class);
