@@ -51,11 +51,9 @@ public class GetUserDetailsActivity extends AppCompatActivity {
                 String email = cursor.getString(2);
                 String address = cursor.getString(3);
                 String phoneNumber = cursor.getString(4);
-                byte[] ivProfileImage = new byte[0];
-                Bitmap bitmap = BitmapFactory.decodeByteArray(ivProfileImage, 0, ivProfileImage.length);
+                byte[] profileImage = cursor.getBlob(5);  // Retrieve the image data as byte array
 
-
-                User user = new User(userId, username, email, address, phoneNumber, ivProfileImage);
+                User user = new User(userId, username, email, address, phoneNumber, profileImage);
                 userList.add(user);
             } while (cursor.moveToNext());
         }
