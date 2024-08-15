@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.foodiehut.DBHelper;
 import com.example.foodiehut.R;
@@ -17,7 +13,7 @@ import com.example.foodiehut.R;
 public class AdminHomeActivity extends AppCompatActivity {
 
     private TextView tvTotalOrders, tvMostPurchasedItem, tvTotalRevenue;
-    private Button btnAddMenuItems, btnManageMenuItems, btnManageOrders;
+    private Button btnAddMenuItems, btnManageMenuItems, btnManageOrders, btnGetUserDetails;
     private DBHelper dbHelper;
 
     @Override
@@ -32,6 +28,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         btnAddMenuItems = findViewById(R.id.btn_add_menu_items);
         btnManageMenuItems = findViewById(R.id.btn_manage_menu_items);
         btnManageOrders = findViewById(R.id.btn_manage_orders);
+        btnGetUserDetails = findViewById(R.id.btn_get_user_details);
 
         // Initialize database helper
         dbHelper = new DBHelper(this);
@@ -52,6 +49,11 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         btnManageOrders.setOnClickListener(view -> {
             Intent intent = new Intent(AdminHomeActivity.this, ManageOrdersAdmin.class);
+            startActivity(intent);
+        });
+
+        btnGetUserDetails.setOnClickListener(view -> {
+            Intent intent = new Intent(AdminHomeActivity.this, GetUserDetailsActivity.class);
             startActivity(intent);
         });
     }

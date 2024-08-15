@@ -49,6 +49,11 @@
             android:exported="true">
 
         </activity>
+
+        <activity android:name=".Admin.GetUserDetailsActivity"
+            android:exported="false">
+            <!-- Intent filters if any -->
+        </activity>
         <activity
             android:name=".ui.DetailedActivity"
             android:exported="false" />
