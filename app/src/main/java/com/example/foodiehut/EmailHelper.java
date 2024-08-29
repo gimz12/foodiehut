@@ -15,8 +15,8 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailHelper {
 
-    private static final String EMAIL = "sample@gmail.com";
-    private static final String APP_PASSWORD = "APPPASSWORD";
+    private static final String EMAIL = "kumalillankoon12@gmail.com";
+    private static final String APP_PASSWORD = "sjlebzmrdishygym";
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
 

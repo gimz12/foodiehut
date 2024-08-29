@@ -1,6 +1,7 @@
 package com.example.foodiehut.Admin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -124,14 +125,36 @@ public class ManageOrderStatusAdmin extends AppCompatActivity {
     }
 
     private void sendOrderAcceptedEmail() {
-        String recipientEmail = "kumalillankoon12@gmail.com"; // Hard-coded email address
-        if (recipientEmail != null && !recipientEmail.isEmpty()) {
-            String subject = "Your Order has been Accepted";
-            String body = "Dear Customer,\n\nYour order with Order ID: " + orderId + " has been accepted and is being processed.\n\nThank you for choosing FoodieHut!";
-            EmailHelper.sendEmail(recipientEmail, subject, body);
-            Toast.makeText(this, "Order accepted email sent to " + recipientEmail, Toast.LENGTH_SHORT).show();
+        // Retrieve the user_id from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        int userId = sharedPreferences.getInt("user_id", -1);  // -1 indicates user_id not found
+
+        if (userId != -1) {
+            // Query the database to get the email address for the retrieved user_id
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery("SELECT email FROM Users WHERE user_id = ?", new String[]{String.valueOf(userId)});
+
+            if (cursor != null && cursor.moveToFirst()) {
+                // Get the email address from the result
+                String recipientEmail = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                cursor.close();
+
+                // Check if the email is available
+                if (recipientEmail != null && !recipientEmail.isEmpty()) {
+                    String subject = "Your Order has been Accepted";
+                    String body = "Dear Customer,\n\nYour order with Order ID: " + orderId + " has been accepted and is being processed.\n\nThank you for choosing FoodieHut!";
+
+                    // Send the email using EmailHelper
+                    EmailHelper.sendEmail(recipientEmail, subject, body);
+                    Toast.makeText(this, "Order accepted email sent to " + recipientEmail, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Recipient email is not available", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Failed to retrieve email address for user", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "Recipient email is not available", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "User ID not found in SharedPreferences", Toast.LENGTH_SHORT).show();
         }
     }
 }
